@@ -1,20 +1,22 @@
 import ChatInput from '@/components/ChatInput'
+import { initSchema } from '@/lib/db'
 import { getAllLogs } from '@/lib/logger'
-import { ChatState, Message } from '@/types'
+import { ChatLog, ChatState, Message } from '@/types'
 
 export const dynamic = 'force-dynamic'
 
 export default async function Page({ searchParams }: { searchParams: { sessionId?: string } }) {
+  await initSchema()
   const sessionId = searchParams.sessionId || crypto.randomUUID()
   
   // Fetch existing logs for this session if any (persistence)
-  const allLogs = getAllLogs()
-  const sessionLogs = allLogs
-    .filter(log => log.session_id === sessionId)
+  const allLogs = await getAllLogs()
+  const sessionLogs = (allLogs as ChatLog[])
+    .filter((log: ChatLog) => log.session_id === sessionId)
     .reverse() // Oldest first for chat flow
 
   const messages: Message[] = []
-  sessionLogs.forEach(log => {
+  sessionLogs.forEach((log: ChatLog) => {
     messages.push({
       id: crypto.randomUUID(),
       role: 'user',

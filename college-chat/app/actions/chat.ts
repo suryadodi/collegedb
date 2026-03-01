@@ -1,6 +1,7 @@
 "use server"
 
 import { runAIChat } from '@/lib/ai'
+import { initSchema } from '@/lib/db'
 import { saveMessage } from '@/lib/logger'
 import { ChatState, Message } from '@/types'
 import { revalidatePath } from 'next/cache'
@@ -9,6 +10,9 @@ export async function sendMessageAction(
   prevState: ChatState,
   formData: FormData
 ): Promise<ChatState> {
+  // Ensure DB and logs table exist before any operations
+  await initSchema()
+  
   const userMessage = formData.get("message") as string
   const sessionId = formData.get("sessionId") as string || prevState.sessionId
 
@@ -40,8 +44,8 @@ export async function sendMessageAction(
     messages: [...updatedMessages, aiMsg]
   }
 
-  // Save log after AI response
-  saveMessage(sessionId, userMessage, content, toolCalled, toolArgs)
+  // Save log after AI response (async)
+  await saveMessage(sessionId, userMessage, content, toolCalled, toolArgs)
   
   revalidatePath('/')
   return newState

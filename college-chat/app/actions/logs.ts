@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export async function clearLogsAction(): Promise<void> {
-  clearLogs()
+  await clearLogs()
   revalidatePath('/logs')
   redirect('/logs')
 }
