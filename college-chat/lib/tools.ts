@@ -17,11 +17,15 @@ export const tools: any[] = [
     type: "function",
     function: {
       name: "getStudentsByDepartment",
-      description: "Find students belonging to a specific department (CS, ECE, MBA, MECH, CIVIL).",
+      description: "Find students belonging to a specific department. Use ONLY these values: CS, ECE, MBA, MECH, CIVIL.",
       parameters: {
         type: "object",
         properties: {
-          department: { type: "string", description: "The department name" }
+          department: { 
+            type: "string", 
+            enum: ["CS", "ECE", "MBA", "MECH", "CIVIL"],
+            description: "the department code" 
+          }
         },
         required: ["department"]
       }
@@ -133,6 +137,29 @@ export const tools: any[] = [
           gpa: { type: "number", description: "Minimum GPA threshold" }
         },
         required: ["gpa"]
+      }
+    }
+  },
+  {
+    type: "function",
+    function: {
+      name: "createStudent",
+      description: "Registers a new student in the college database.",
+      parameters: {
+        type: "object",
+        properties: {
+          name: { type: "string", description: "Full name of the student" },
+          email: { type: "string", description: "College email address" },
+          department: { 
+            type: "string", 
+            enum: ["CS", "ECE", "MBA", "MECH", "CIVIL"],
+            description: "The department code"
+          },
+          year: { type: "number", description: "Academic year (1-4)" },
+          gpa: { type: "number", description: "Initial GPA" },
+          phone: { type: "string", description: "Contact phone number" }
+        },
+        required: ["name", "email", "department", "year", "gpa"]
       }
     }
   }

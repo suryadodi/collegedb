@@ -24,6 +24,8 @@ export function runFunction(name: string, args: any) {
         return db.getStudentCount()
       case 'getStudentsAboveGpa':
         return db.getStudentsAboveGpa(Number(args.gpa))
+      case 'createStudent':
+        return db.createStudent(args)
       default:
         throw new Error(`Unknown function: ${name}`)
     }

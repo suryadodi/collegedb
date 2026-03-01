@@ -1,99 +1,78 @@
 [
   {
-    "session_id": "094dc237-0825-4065-8198-7865bf613d44",
-    "timestamp": "2026-03-01T14:44:04.628Z",
-    "user_message": "bestperformer in css",
-    "ai_response": "The best performer in the Computer Science (CS) department is:\n\n- **Name:** Priya Patel\n- **Email:** priya.p@college.edu\n- **Department:** CS\n- **Year:** 2\n- **GPA:** 3.95\n- **Phone:** 9876543211\n\n### Follow-up Queries You Might Find Helpful:\n- List all students in the CS department.\n- Find all students with a GPA above a specific threshold in CS.\n- Get statistics for the CS department.",
-    "tool_called": "getTopStudents",
+    "session_id": "c32aea61-ac43-40b9-90f9-778f8555d672",
+    "timestamp": "2026-03-01T16:10:22.900Z",
+    "user_message": "how many students pass",
+    "ai_response": "There are currently 26 students enrolled. If you need more specific information about passing students, please specify the criteria (e.g., GPA threshold).",
+    "tool_called": "getStudentCount",
+    "tool_args": {}
+  },
+  {
+    "session_id": "c32aea61-ac43-40b9-90f9-778f8555d672",
+    "timestamp": "2026-03-01T16:09:59.913Z",
+    "user_message": "Register a student: Name K surya, Email ksuryaj1892@gmail.com, Dept CS, Year 3, GPA 2.5, Phone 09843247470",
+    "ai_response": "The student K surya has been successfully registered with ID 26. If you need further assistance, let me know!",
+    "tool_called": "createStudent",
     "tool_args": {
-      "limit": 1
+      "name": "K surya",
+      "email": "ksuryaj1892@gmail.com",
+      "department": "CS",
+      "year": 3,
+      "gpa": 2.5,
+      "phone": "09843247470"
     }
   },
   {
-    "session_id": "${sessionId}",
-    "timestamp": "2026-03-01T14:32:35.657Z",
-    "user_message": "Show me the top 5 students in the college\"",
-    "ai_response": "I encountered an error with OpenRouter: Insufficient credits. This account never purchased credits. Make sure your key is on the correct account or org, and if so, purchase more at https://openrouter.ai/settings/credits. Please check your API key and quota.",
+    "session_id": "c32aea61-ac43-40b9-90f9-778f8555d672",
+    "timestamp": "2026-03-01T16:09:22.105Z",
+    "user_message": "does a student eat",
+    "ai_response": "I focus on student data and academic information. If you have any questions related to that, feel free to ask!",
     "tool_called": "none",
     "tool_args": {}
   },
   {
-    "session_id": "${sessionId}",
-    "timestamp": "2026-03-01T14:19:28.195Z",
-    "user_message": "List the students in the ECE department",
-    "ai_response": "I encountered an error with xAI: 403 \"Your newly created team doesn't have any credits or licenses yet. You can purchase those on https://console.x.ai/team/b84f160c-834d-42d1-8c22-b35582052e2b.\". Please check your API key and billing.",
+    "session_id": "c32aea61-ac43-40b9-90f9-778f8555d672",
+    "timestamp": "2026-03-01T16:09:02.876Z",
+    "user_message": "who are you",
+    "ai_response": "I am the College Database Assistant, here to help you with student data and related queries. How can I assist you today?",
     "tool_called": "none",
     "tool_args": {}
   },
   {
-    "session_id": "${sessionId}",
-    "timestamp": "2026-03-01T14:14:45.588Z",
-    "user_message": "List all CS students",
-    "ai_response": "I encountered an error with OpenAI: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.. Please check your API key and billing.",
+    "session_id": "c32aea61-ac43-40b9-90f9-778f8555d672",
+    "timestamp": "2026-03-01T16:08:51.741Z",
+    "user_message": "hi",
+    "ai_response": "Hello! How can I assist you today?",
     "tool_called": "none",
     "tool_args": {}
   },
   {
-    "session_id": "${sessionId}",
-    "timestamp": "2026-03-01T14:09:43.715Z",
-    "user_message": "Show all students in CS",
-    "ai_response": "I encountered an error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.. Please make sure the GOOGLE_GENERATIVE_AI_API_KEY is configured.",
+    "session_id": "c32aea61-ac43-40b9-90f9-778f8555d672",
+    "timestamp": "2026-03-01T16:08:09.215Z",
+    "user_message": "Register a student: Name surya, Email ksuryaj1892@gmail.com, Dept ECE, Year 4, GPA 1.2",
+    "ai_response": "Please provide the contact phone number to complete the registration. \n\nRegister a student: Name [surya], Email [ksuryaj1892@gmail.com], Dept [ECE], Year [4], GPA [1.2], Phone [Phone Number]",
+    "tool_called": "createStudent",
+    "tool_args": {
+      "name": "surya",
+      "email": "ksuryaj1892@gmail.com",
+      "department": "ECE",
+      "year": 4,
+      "gpa": 1.2
+    }
+  },
+  {
+    "session_id": "1e9911d0-e703-430d-a2fd-a7ea7673ac19",
+    "timestamp": "2026-03-01T16:03:17.045Z",
+    "user_message": "what is your name",
+    "ai_response": "No records found in the database.",
     "tool_called": "none",
     "tool_args": {}
   },
   {
-    "session_id": "${sessionId}",
-    "timestamp": "2026-03-01T14:05:34.063Z",
-    "user_message": "Who are the top CS students?",
-    "ai_response": "I encountered an error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 26.124475341s. [{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"26s\"}]. Please make sure the GOOGLE_GENERATIVE_AI_API_KEY is configured.",
-    "tool_called": "none",
-    "tool_args": {}
-  },
-  {
-    "session_id": "${sessionId}",
-    "timestamp": "2026-03-01T14:00:35.465Z",
-    "user_message": "check the students in cs departmnet",
-    "ai_response": "I encountered an error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent: [404 Not Found] models/gemini-1.5-flash-latest is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.. Please make sure the GOOGLE_GENERATIVE_AI_API_KEY is configured.",
-    "tool_called": "none",
-    "tool_args": {}
-  },
-  {
-    "session_id": "${sessionId}",
-    "timestamp": "2026-03-01T13:56:31.772Z",
-    "user_message": "students in cs department",
-    "ai_response": "I encountered an error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.. Please make sure the GOOGLE_GENERATIVE_AI_API_KEY is configured.",
-    "tool_called": "none",
-    "tool_args": {}
-  },
-  {
-    "session_id": "${sessionId}",
-    "timestamp": "2026-03-01T13:54:04.455Z",
-    "user_message": "give me all the students name ",
-    "ai_response": "I encountered an error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent: [400 Bad Request] Invalid JSON payload received. Unknown name \"tools\": Cannot find field.\nInvalid JSON payload received. Unknown name \"systemInstruction\": Cannot find field. [{\"@type\":\"type.googleapis.com/google.rpc.BadRequest\",\"fieldViolations\":[{\"description\":\"Invalid JSON payload received. Unknown name \\\"tools\\\": Cannot find field.\"},{\"description\":\"Invalid JSON payload received. Unknown name \\\"systemInstruction\\\": Cannot find field.\"}]}]. Please make sure the GOOGLE_GENERATIVE_AI_API_KEY is configured.",
-    "tool_called": "none",
-    "tool_args": {}
-  },
-  {
-    "session_id": "f584c33c-dbae-44a4-8222-5b62df8b85ae",
-    "timestamp": "2026-03-01T13:53:21.189Z",
-    "user_message": "give me all the students name",
-    "ai_response": "I encountered an error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent: [400 Bad Request] Invalid JSON payload received. Unknown name \"tools\": Cannot find field.\nInvalid JSON payload received. Unknown name \"systemInstruction\": Cannot find field. [{\"@type\":\"type.googleapis.com/google.rpc.BadRequest\",\"fieldViolations\":[{\"description\":\"Invalid JSON payload received. Unknown name \\\"tools\\\": Cannot find field.\"},{\"description\":\"Invalid JSON payload received. Unknown name \\\"systemInstruction\\\": Cannot find field.\"}]}]. Please make sure the GOOGLE_GENERATIVE_AI_API_KEY is configured.",
-    "tool_called": "none",
-    "tool_args": {}
-  },
-  {
-    "session_id": "f584c33c-dbae-44a4-8222-5b62df8b85ae",
-    "timestamp": "2026-03-01T13:52:03.026Z",
-    "user_message": "how many departments you have",
-    "ai_response": "I encountered an error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.. Please make sure the GOOGLE_GENERATIVE_AI_API_KEY is configured.",
-    "tool_called": "none",
-    "tool_args": {}
-  },
-  {
-    "session_id": "f584c33c-dbae-44a4-8222-5b62df8b85ae",
-    "timestamp": "2026-03-01T13:50:37.630Z",
-    "user_message": "list out the students of computer science department",
-    "ai_response": "I encountered an error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [400 Bad Request] Invalid value at 'system_instruction' (type.googleapis.com/google.ai.generativelanguage.v1beta.Content), \"You are a precise college student database assistant.\nALWAYS use tools to answer questions about students.\nNEVER guess or make up student data.\nOnly return what the database actually gives you.\nFormat responses clearly:\n- Student lists: numbered with name, dept, year, GPA\n- Single student: all fields neatly labeled\n- Stats: clear table format\n- Counts: number with context\nSuggest follow-up queries the user might find helpful.\" [{\"@type\":\"type.googleapis.com/google.rpc.BadRequest\",\"fieldViolations\":[{\"field\":\"system_instruction\",\"description\":\"Invalid value at 'system_instruction' (type.googleapis.com/google.ai.generativelanguage.v1beta.Content), \\\"You are a precise college student database assistant.\\nALWAYS use tools to answer questions about students.\\nNEVER guess or make up student data.\\nOnly return what the database actually gives you.\\nFormat responses clearly:\\n- Student lists: numbered with name, dept, year, GPA\\n- Single student: all fields neatly labeled\\n- Stats: clear table format\\n- Counts: number with context\\nSuggest follow-up queries the user might find helpful.\\\"\"}]}]. Please make sure the GOOGLE_GENERATIVE_AI_API_KEY is configured.",
+    "session_id": "1e9911d0-e703-430d-a2fd-a7ea7673ac19",
+    "timestamp": "2026-03-01T16:02:57.441Z",
+    "user_message": "hi",
+    "ai_response": "No records found in the database.",
     "tool_called": "none",
     "tool_args": {}
   }
