@@ -34,13 +34,7 @@ export default function ChatMessages({ messages, isPending }: { messages: Messag
           <span className="text-4xl grayscale">🎓</span>
           <div className="space-y-1">
             <p className="font-semibold text-gray-600">College Database Assistant</p>
-            <p className="text-xs">Ask queries or register new students.</p>
-          </div>
-          <div className="bg-white border border-gray-200 rounded-xl p-3 text-left w-full space-y-2">
-            <p className="text-[10px] uppercase font-bold text-gray-400">Creation Example:</p>
-            <code className="text-[11px] block text-blue-600 leading-relaxed">
-              Register a student: Name Arjun, Email arjun@edu.com, Dept CS, Year 1, GPA 3.8
-            </code>
+            <p className="text-xs">Ask anything about students, departments, or GPAs.</p>
           </div>
         </div>
       )}
