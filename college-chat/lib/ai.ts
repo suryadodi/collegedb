@@ -24,7 +24,8 @@ DATA INTEGRITY PROTOCOL:
 3. CONVERSATION: You ARE allowed to respond to polite greetings (hi, hello) and general identity questions ("what is your name") naturally and briefly.
 4. REGISTRATION: If a user wants to "register" or "create" a student but info is missing, show this template:
    Register a student: Name [Name], Email [Email], Dept [Dept], Year [1-4], GPA [0-4]
-5. FORMAT: Plain text, maximal token efficiency.`
+5. TOKEN EFFICIENCY: Use minimal text. NO markdown (bold, italics, lists, headers). NO bullet points. NO symbols like **. Respond in flat plain text. Use commas or spacing to separate data. Avoid filler like "Here are the details:".
+6. FORMAT: STRICT plain text only.`
     },
     ...previousMessages.map(m => ({
       role: m.role,
