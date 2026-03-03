@@ -4,6 +4,7 @@ import { getAllLogs } from '@/lib/logger'
 import { ChatLog, ChatState, Message } from '@/types'
 
 export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
 
 export default async function Page({ searchParams }: { searchParams: { sessionId?: string } }) {
   await initSchema()

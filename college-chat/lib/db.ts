@@ -1,4 +1,3 @@
-import { DepartmentStat, Student } from '@/types';
 import { Client, createClient } from '@libsql/client';
 import 'server-only';
 
@@ -6,7 +5,7 @@ import 'server-only';
 const url = process.env.TURSO_DATABASE_URL || 'file:college.db';
 const authToken = process.env.TURSO_AUTH_TOKEN;
 
-// ✅ Singleton pattern
+// ✅ Singleton pattern for standard queries (Logs, Schema)
 let _client: Client | null = null
 
 function getClient(): Client {
@@ -19,9 +18,15 @@ function getClient(): Client {
   return _client
 }
 
-// ✅ Database Initialization
+/**
+ * Database Initialization
+ * Ensures tables exist and are seeded if empty.
+ */
 export async function initSchema() {
+  console.log('🏗️ [DB] Checking schema and connectivity...');
   const client = getClient()
+  
+  // 1. Students Table
   await client.execute(`
     CREATE TABLE IF NOT EXISTS students (
       student_id   INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -35,7 +40,7 @@ export async function initSchema() {
     );
   `)
 
-  // Also create logs table for persistent chat history
+  // 2. Chat Logs Table
   await client.execute(`
     CREATE TABLE IF NOT EXISTS chat_logs (
       id           INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,12 +53,15 @@ export async function initSchema() {
     );
   `)
 
+  // 3. Seed if empty
   const res = await client.execute('SELECT COUNT(*) as count FROM students')
   const count = Number(res.rows[0]?.count || 0)
-
   if (count === 0) await seedStudents(client)
 }
 
+/**
+ * Seed data for development
+ */
 async function seedStudents(client: Client) {
   const students = [
     { name: "Arjun Sharma",     email: "arjun.s@college.edu",     department: "CS",    year: 1, gpa: 3.80, phone: "9876543210" },
@@ -92,125 +100,8 @@ async function seedStudents(client: Client) {
 }
 
 // ═══════════════════════════════════════
-// EXPORTED ASYNC QUERY FUNCTIONS
-// ═══════════════════════════════════════
-
-export async function getAllStudents(): Promise<Student[]> {
-  try {
-    const res = await getClient().execute('SELECT * FROM students ORDER BY name ASC')
-    return res.rows as unknown as Student[]
-  } catch (e) { console.error(e); return [] }
-}
-
-export async function getStudentsByDepartment(department: string): Promise<Student[]> {
-  try {
-    const res = await getClient().execute({
-      sql: 'SELECT * FROM students WHERE department = ? ORDER BY gpa DESC',
-      args: [department]
-    })
-    return res.rows as unknown as Student[]
-  } catch (e) { console.error(e); return [] }
-}
-
-export async function getTopStudents(limit: number): Promise<Student[]> {
-  try {
-    const res = await getClient().execute({
-      sql: 'SELECT * FROM students ORDER BY gpa DESC LIMIT ?',
-      args: [limit]
-    })
-    return res.rows as unknown as Student[]
-  } catch (e) { console.error(e); return [] }
-}
-
-export async function getStudentsByYear(year: number): Promise<Student[]> {
-  try {
-    const res = await getClient().execute({
-      sql: 'SELECT * FROM students WHERE year = ? ORDER BY name ASC',
-      args: [year]
-    })
-    return res.rows as unknown as Student[]
-  } catch (e) { console.error(e); return [] }
-}
-
-export async function searchStudentByName(name: string): Promise<Student[]> {
-  try {
-    const res = await getClient().execute({
-      sql: 'SELECT * FROM students WHERE name LIKE ? ORDER BY name ASC',
-      args: [`%${name}%`]
-    })
-    return res.rows as unknown as Student[]
-  } catch (e) { console.error(e); return [] }
-}
-
-export async function getStudentsByGpaRange(min: number, max: number): Promise<Student[]> {
-  try {
-    const res = await getClient().execute({
-      sql: 'SELECT * FROM students WHERE gpa BETWEEN ? AND ? ORDER BY gpa DESC',
-      args: [min, max]
-    })
-    return res.rows as unknown as Student[]
-  } catch (e) { console.error(e); return [] }
-}
-
-export async function getStudentById(id: number): Promise<Student | null> {
-  try {
-    const res = await getClient().execute({
-      sql: 'SELECT * FROM students WHERE student_id = ?',
-      args: [id]
-    })
-    return (res.rows[0] as unknown as Student) ?? null
-  } catch (e) { console.error(e); return null }
-}
-
-export async function getDepartmentStats(): Promise<DepartmentStat[]> {
-  try {
-    const res = await getClient().execute(`
-      SELECT 
-        department,
-        COUNT(*)          AS count,
-        ROUND(AVG(gpa),2) AS avg_gpa,
-        MIN(gpa)          AS min_gpa,
-        MAX(gpa)          AS max_gpa
-      FROM students
-      GROUP BY department
-      ORDER BY department ASC
-    `)
-    return res.rows as unknown as DepartmentStat[]
-  } catch (e) { console.error(e); return [] }
-}
-
-export async function getStudentCount(): Promise<{ total: number }> {
-  try {
-    const res = await getClient().execute('SELECT COUNT(*) as total FROM students')
-    return { total: Number(res.rows[0].total) }
-  } catch (e) { console.error(e); return { total: 0 } }
-}
-
-export async function getStudentsAboveGpa(gpa: number): Promise<Student[]> {
-  try {
-    const res = await getClient().execute({
-      sql: 'SELECT * FROM students WHERE gpa >= ? ORDER BY gpa DESC',
-      args: [gpa]
-    })
-    return res.rows as unknown as Student[]
-  } catch (e) { console.error(e); return [] }
-}
-
-export async function createStudent(student: Omit<Student, 'student_id' | 'created_at'>): Promise<{ success: boolean; id?: number; error?: string }> {
-  try {
-    const res = await getClient().execute({
-      sql: `INSERT INTO students (name, email, department, year, gpa, phone) VALUES (?, ?, ?, ?, ?, ?)`,
-      args: [student.name, student.email, student.department, student.year, student.gpa, student.phone]
-    })
-    return { success: true, id: Number(res.lastInsertRowid) }
-  } catch (e: any) {
-    console.error(e)
-    return { success: false, error: e.message }
-  }
-}
-
-// ═══════════════════════════════════════
 // LOG STORAGE IN DATABASE
+// (Used by Audit Page / Sidebar)
 // ═══════════════════════════════════════
 
 export async function saveLogToDb(log: any) {
